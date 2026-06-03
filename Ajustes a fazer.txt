@@ -1,0 +1,35 @@
+Fazer carregar uma folha de pagamentos salva X
+Mostrar o nome do funcionário na cds X
+alterar labels descontos com dois pontos e sem abreviação X
+Ao clicar no grid, fazer aparecer os dados do funcionário para edit X
+ajustar identações Xs
+
+
+Ajustar o calculo de INSS de acordo com o da alíquota do governo X
+Colocar um campo de Mês e colocar para fazer mais de uma folha X
+
+procedure TfrFolhaPagamento.cbMesSelect(Sender: TObject);
+begin
+  cdsFolha.IndexFieldNames := 'bdIDFUNCIONARIO';
+  if cdsFolha.FindKey([edCodigoFuncionario.Text]) then
+    Begin
+      cdsFolha.IndexFieldNames := 'bdMES';
+      if (cdsFolha.FindKey([cbMes.Items[cbMes.ItemIndex]])) then
+        Begin
+          edSalarioBase.Text := cdsFolhabdSALARIOBASE.AsString;
+          edHoraExtra.Text := cdsFolhabdHORAEXTRA.AsString;
+          edOutros.Text := cdsFolhabdOUTROS.AsString;
+          edInss.Text := cdsFolhabdINSS.AsString;
+          edIrrf.Text := cdsFolhabdIRRF.AsString;
+          edValeTransp.Text := cdsFolhabdVALETRANSP.AsString;
+          edTotalProventos.Text := cdsFolhabdTOTALPROVENTOS.AsString;
+          edTotalDescontos.Text := cdsFolhabdTOTALDESCONTOS.AsString;
+          edSalarioLiquido.Text := cdsFolhabdSALARIOLIQUIDO.AsString;
+        End
+      else
+        Begin
+          pLimpaCamposFolhaPagamento;
+        End;
+    End;
+  //edSalarioBase.SetFocus
+end;
